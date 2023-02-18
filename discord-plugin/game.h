@@ -380,20 +380,20 @@ const std::string vehNames[] = {
 };
 
 const std::string radioNames[] = {
-	"None",
-	"Playback FM",
-	"K Rose",
-	"K-DST",
-	"Bounce FM",
-	"SF-UR",
-	"Radio Los Santos",
+	"Nema",
+	"IDG Radio",
+	"Radio F",
+	"M-Kay Radio",
+	"YU Radio",
+	"Radio 90",
+	"LSD Radio",
 	"Radio Emocije",
-	"CSR 103.9",
-	"K-JAH West",
+	"SKRR Radio",
+	"Zizi Radio",
 	"Reverse Radio",
-	"WCTR Talk Radio",
-	"User Track Player",
-	"Off"
+	"Beogradski Radio",
+	"Kasetofon",
+	"Iskljucen"
 };
 
 struct ZoneStruct
