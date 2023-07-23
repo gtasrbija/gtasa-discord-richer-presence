@@ -11,6 +11,6 @@
 #include "Samp.h"
 
 
-#define APPLICATION_ID "924284737365872650"
+#define APPLICATION_ID "929852597957967912"
 
 std::string cp1251_to_utf8(const char* str);

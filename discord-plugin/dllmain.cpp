@@ -1,4 +1,4 @@
-#include "dllmain.h"
+﻿#include "dllmain.h"
 #include <string> 
 #include <stdlib.h>
 
@@ -30,19 +30,19 @@ void MainThread() {
 		Query query(pSamp->srvData.address, std::stoi(pSamp->srvData.port));
 
 		details = "SAMP nick: " + pSamp->srvData.username;
+		smallImageText = "Igra SAMP";
 		std::string fullAddress = "samp://" + pSamp->srvData.address + ':' + pSamp->srvData.port;
 		drp.smallImageKey = "samp_icon";
 
 		while (1 < 2) {
 			if (query.info(pSamp->srvData.info)) {
 				std::string players = std::to_string(pSamp->srvData.info.basic.players) + "/" + std::to_string(pSamp->srvData.info.basic.maxPlayers);
-				state = "Server name: " + pSamp->srvData.info.hostname;
-				largeImageText = "Gamemode: " + pSamp->srvData.info.gamemode;
-				smallImageText = "Player count: " + players;
+				state = "Server ime: " + pSamp->srvData.info.hostname;
+				largeImageText = "Gamemode: " + pSamp->srvData.info.gamemode + "\nBroj igraca: " + players;
 
 			}
 			else {
-				largeImageText = "Failed to fetch server data!";
+				largeImageText = "Neuspesno uzimanje podataka sa servera!";
 			}
 
 
@@ -71,36 +71,37 @@ void MainThread() {
 		while (1 < 2) {
 			if (pGame->IsPedExists()) {
 				if (pGame->IsInCutscene()) {
-					details = "Mission: " + pGame->GetCurrentMission();
-					state = "Watching cutscene";
+					details = "Misija: " + pGame->GetCurrentMission();
+					state = "Gleda cutscenu";
 				}
 
 				else if (pGame->IsInVehicle()) {
-					if (pGame->GetVehicleID() >= 400 && pGame->GetVehicleID() <= 611)
-						details = "Vehicle: " + vehNames[pGame->GetVehicleID() - 400];
-					else details = "Hm, not sure what that vehicle is!";
+					if (pGame->GetVehicleID() >= 400 && pGame->GetVehicleID() <= 611) 
+						 details = "Vozilo: " + vehNames[pGame->GetVehicleID() - 400];
+					else details = "Hm, nisam siguran koje je to vozilo!";
+
 					state = "Radio: " + radioNames[pGame->GetCurrentRadio()];
 				}
 
 				else if (pGame->IsAnyMissionActive()) {
-					details = "Mission: " + pGame->GetCurrentMission();
-					state = "Weapon: " + weaponNames[pGame->GetCurrentWeapon()];
+					details = "Misija: " + pGame->GetCurrentMission();
+					state = "Oruzje: " + weaponNames[pGame->GetCurrentWeapon()];
 				}
 
 				else if (pGame->GetPlayerWantedLevel()) {
-					details = "Wanted level: " + std::to_string(pGame->GetPlayerWantedLevel());
-					state = "Weapon: " + weaponNames[pGame->GetCurrentWeapon()];
+					details = "Trazeni nivo: " + std::to_string(pGame->GetPlayerWantedLevel());
+					state = "Oruzje: " + weaponNames[pGame->GetCurrentWeapon()];
 				}
 
 				else {
-					details = "Money: $" + std::to_string(pGame->GetPlayerMoney());
+					details = "Novac: $" + std::to_string(pGame->GetPlayerMoney());
 					char helt[64];
-					sprintf_s(helt, "Health: %.2f%%", pGame->GetPlayerHealth());
+					sprintf_s(helt, "Zdravlje: %.2f%%", pGame->GetPlayerHealth());
 					state = helt;
 				}
-
-				largeImageText = "Location: " + pGame->GetCurrentZone();
-				smallImageText = "Ingame time: " + pGame->GetTime();
+												
+				largeImageText = "Lokacija: " + pGame->GetCurrentZone();
+				smallImageText = "Vreme u igri: " + pGame->GetTime();
 
 				// Sending data
 				drp.largeImageText = largeImageText.c_str();
